@@ -6,41 +6,47 @@ import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
+import AddService from "../pages/AddService/AddService";
 
 export const router = createBrowserRouter([
-  {
-    path: "/",
-    Component:RootLayout,
-    children:[
-        {
-            index:true,
-            Component:LandingPage,
-            loader:()=>fetch('/servicecenters.json').then(res=>res.json())
-        }
-    ]
-  },
-  {
-    path: '/',
-    Component: AuthLayout,
-    children: [
-      {
-        path: 'login',
-        Component: Login
-      },
-      {
-        path: 'register',
-        Component: Register
-      }
-    ]
-  },
-  {
-    path:'dashboard',
-    element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-    children:[
-        {
-            
-        }
-    ]
-  }
-  
+    {
+        path: "/",
+        Component: RootLayout,
+        children: [
+            {
+                index: true,
+                Component: LandingPage,
+                loader: () => fetch('/servicecenters.json').then(res => res.json())
+            }
+        ]
+    },
+
+    {
+        path: 'add-service',
+        Component: AddService
+    },
+    {
+        path: '/',
+        Component: AuthLayout,
+        children: [
+            {
+                path: 'login',
+                Component: Login
+            },
+            {
+                path: 'register',
+                Component: Register
+            }
+        ]
+    },
+    {
+        path: 'dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+            {
+
+            }
+        ]
+    }
+
 ]);

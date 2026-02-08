@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router';
 import useAuth from '../Hooks/useAuth';
 import { AiOutlineMenu } from 'react-icons/ai';
 import userImg from "../assets/user.png"
+import { BiSolidCustomize } from 'react-icons/bi';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +15,10 @@ const Navbar = () => {
         <li><NavLink to="">Services</NavLink></li>
         <li><NavLink to="">About</NavLink></li>
         <li><NavLink to="">Contact</NavLink></li>
+       
+
+
+        <li><NavLink to="/add-service" className='border'> <BiSolidCustomize /> Upload Service</NavLink></li>
 
     </>
 

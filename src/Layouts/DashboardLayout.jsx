@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet } from 'react-router';
 
 const DashboardLayout = () => {
     return (
@@ -15,7 +16,10 @@ const DashboardLayout = () => {
                         <div className="px-4">Navbar Title</div>
                     </nav>
                     {/* Page content here */}
-                    <div className="p-4">Page Content</div>
+                    <div className='p-5'>
+                        <Outlet></Outlet>
+                    </div>
+
                 </div>
 
                 <div className="drawer-side is-drawer-close:overflow-visible">
@@ -40,6 +44,15 @@ const DashboardLayout = () => {
                                     <span className="is-drawer-close:hidden">Settings</span>
                                 </button>
                             </li>
+
+                              {/* <li>
+                            <NavLink to={'/dashboard/add-service'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                data-tip="Add Service">
+                                <BiSolidCustomize />
+
+                                <span className="is-drawer-close:hidden"> Add Service</span>
+                            </NavLink>
+                            </li> */}
                         </ul>
                     </div>
                 </div>
