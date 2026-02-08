@@ -26,7 +26,7 @@ const Login = () => {
 
     return (
         <div className=" p-10 bg-base-100 w-full max-w-sm mx-auto  shadow-2xl">
-            <h1 className='text-3xl justify-center flex items-end mb-6'>login to <span><Logo></Logo></span></h1>
+            <h1 className='text-3xl justify-center flex items-end mb-6'>Login with <span><Logo></Logo></span></h1>
             <form onSubmit={handleSubmit(handleLogin)}>
                 <fieldset className="fieldset">
 
@@ -53,7 +53,7 @@ const Login = () => {
                     <div>
                         <a className="link link-hover">Forgot password?</a></div>
 
-                    <button className="btn btn-neutral my-4">Login</button>
+                    <button className="btn btn-secondary my-4">Login</button>
 
 
                 </fieldset>

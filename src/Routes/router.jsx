@@ -4,6 +4,8 @@ import LandingPage from "../pages/Home/Landingpage/LandingPage";
 import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -31,5 +33,14 @@ export const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path:'dashboard',
+    element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    children:[
+        {
+            
+        }
+    ]
+  }
   
 ]);
