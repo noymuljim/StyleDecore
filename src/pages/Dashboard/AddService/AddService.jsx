@@ -1,14 +1,14 @@
 import React from 'react';
-import Navbar from '../../shared/Navbar';
 import { useForm } from 'react-hook-form';
-import form1 from "../../assets/form1.png"
-import useAuth from '../../Hooks/useAuth';
-import useAxiosSecure from '../../Hooks/useAxiosSecure';
+// import form1 from "../../../assets/form1.png"
+// import useAuth from '../../../Hooks/useAuth';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const AddService = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { user } = useAuth()
+    // const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
 
 
@@ -35,14 +35,13 @@ const AddService = () => {
                 serviceCost: data.serviceCost,
                 serviceUnit: data.serviceUnit,
                 serviceDescription: data.serviceDescription,
-                serviceProviderName: user?.email,
-                thumbnail: thumbnailUrl,   
-                createdAt: new Date()
+                thumbnail: thumbnailUrl,          
             };
 
             // 4. save to DB
             const res = await axiosSecure.post('/service', serviceData);
             console.log('Service saved', res.data);
+            toast.success('Service saved');
 
         } catch (err) {
             console.error(err);
@@ -53,14 +52,14 @@ const AddService = () => {
 
     return (
         <div>
-            <Navbar></Navbar>
+          
             <div className='max-w-7xl mx-auto '>
 
-                <div className='flex justify-between items-center gap-8 my-10'>
+                
 
-                    <div className='flex-2'>
-                        <h1 className='text-5xl font-semibold'>Add Your Decoration Service</h1>
-                        <p>Showcase your decoration expertise and let clients discover your services.</p>
+                    <div className='bg-white rounded-2xl p-10'>
+                        <h1 className='text-5xl font-semibold'>Create a New Decoration Service</h1>
+                        <p>Define service details, pricing, and category to make it available for customer bookings.</p>
 
                         <form onSubmit={handleSubmit(handleAddService)}>
 
@@ -107,10 +106,10 @@ const AddService = () => {
                                     errors.name?.type === 'required' && <p>Photo is required</p>
                                 }
 
-                                {/* providerName */}
+                                {/* providerName
                                 <label className="label">Service Provider:</label>
                                 <input type="text" {...register('serviceProviderName', { required: true })}
-                                    className="input w-full" defaultValue={user?.email} readOnly />
+                                    className="input w-full" defaultValue={user?.email} readOnly /> */}
 
 
                                 {/* cost */}
@@ -147,19 +146,17 @@ const AddService = () => {
                                     className="textarea w-full focus:border-0 focus:outline-gray-200 h-[100px]"
                                 >
                                     {
-                                        errors.serviceDescription?.type === 'required' && <p>Service cost is required</p>
+                                        errors.serviceDescription?.type === 'required' && <p>Service description is required</p>
                                     }
 
                                 </textarea>
 
                             </fieldset>
-                            <button className='btn btn-secondary'>Submit</button>
+                            <button className='btn w-full mt-5 btn-secondary'>Submit</button>
                         </form>
                     </div>
-                    <div className='hidden flex-1 md:block'>
-                        <img className='rounded-2xl ' src={form1} alt="" />
-                    </div>
-                </div>
+                   
+                
 
             </div>
 

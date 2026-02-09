@@ -18,7 +18,7 @@ const Navbar = () => {
        
 
 
-        <li><NavLink to="/add-service" className='border'> <BiSolidCustomize /> Upload Service</NavLink></li>
+        {/* <li><NavLink to="/add-service" className='border'> <BiSolidCustomize /> Upload Service</NavLink></li> */}
 
     </>
 

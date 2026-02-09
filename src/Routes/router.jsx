@@ -6,7 +6,8 @@ import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
-import AddService from "../pages/AddService/AddService";
+import AddService from "../pages/Dashboard/AddService/AddService";
+import serviceDetails from "../pages/Home/Home/Services/ServiceDetails/serviceDetails";
 
 export const router = createBrowserRouter([
     {
@@ -17,14 +18,16 @@ export const router = createBrowserRouter([
                 index: true,
                 Component: LandingPage,
                 loader: () => fetch('/servicecenters.json').then(res => res.json())
+            },
+            {
+                path:'service-details/:id',
+                Component:serviceDetails
             }
+            
         ]
     },
 
-    {
-        path: 'add-service',
-        Component: AddService
-    },
+    
     {
         path: '/',
         Component: AuthLayout,
@@ -44,8 +47,9 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
-
-            }
+        path: 'add-service',
+        Component: AddService
+    },
         ]
     }
 

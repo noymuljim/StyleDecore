@@ -1,10 +1,12 @@
 import React from 'react';
-import { Outlet } from 'react-router';
+import { BiSolidCustomize } from 'react-icons/bi';
+import { Link, NavLink, Outlet } from 'react-router';
+import logoImg from "../assets/logo1.png"
 
 const DashboardLayout = () => {
     return (
         <div>
-            <div className="drawer lg:drawer-open">
+            <div className="drawer lg:drawer-open bg-gray-100">
                 <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     {/* Navbar */}
@@ -28,6 +30,9 @@ const DashboardLayout = () => {
                         {/* Sidebar content here */}
                         <ul className="menu w-full grow">
                             {/* List item */}
+                              <li>
+                           <Link to={'/'}> <img className='w-[30px] h-[30px] ' src={logoImg} alt="" /></Link>
+                        </li>
                             <li>
                                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
                                     {/* Home icon */}
@@ -45,14 +50,14 @@ const DashboardLayout = () => {
                                 </button>
                             </li>
 
-                              {/* <li>
+                              <li>
                             <NavLink to={'/dashboard/add-service'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                                 data-tip="Add Service">
                                 <BiSolidCustomize />
 
                                 <span className="is-drawer-close:hidden"> Add Service</span>
                             </NavLink>
-                            </li> */}
+                            </li>
                         </ul>
                     </div>
                 </div>

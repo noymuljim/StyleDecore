@@ -1,25 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const ServiceCard = ({ service }) => {
     return (
-        // <div className="card bg-base-100 shadow-xl">
-        //     <figure>
-        //         <img
-        //             src={service.thumbnail}
-        //             alt={service.serviceName}
-        //             className="h-52 w-full object-cover"
-        //         />
-        //     </figure>
-
-        //     <div className="card-body">
-        //         <h2 className="card-title">{service.serviceName}</h2>
-        //         <p className="text-sm">{service.serviceType}</p>
-        //         <p className="font-semibold">৳ {service.serviceCost}</p>
-        //         <button className="btn btn-outline btn-sm mt-2">
-        //             View Details
-        //         </button>
-        //     </div>
-        // </div>
+       
         <div>
             <div className="card bg-base-100 w-96 shadow-sm">
                 <figure>
@@ -37,6 +21,7 @@ const ServiceCard = ({ service }) => {
                     <div className="card-actions justify-end">
                         <div className="badge badge-outline">{service.serviceCost}</div>
                     </div>
+                   <Link  className='btn btn-secondary' to={`/service-details/${service._id}` }>Details</Link>
                 </div>
             </div>
         </div>
