@@ -2,6 +2,7 @@ import React from 'react';
 import { BiSolidCustomize } from 'react-icons/bi';
 import { Link, NavLink, Outlet } from 'react-router';
 import logoImg from "../assets/logo1.png"
+import { IoBookmarks } from 'react-icons/io5';
 
 const DashboardLayout = () => {
     return (
@@ -30,9 +31,9 @@ const DashboardLayout = () => {
                         {/* Sidebar content here */}
                         <ul className="menu w-full grow">
                             {/* List item */}
-                              <li>
-                           <Link to={'/'}> <img className='w-[30px] h-[30px] ' src={logoImg} alt="" /></Link>
-                        </li>
+                            <li>
+                                <Link to={'/'}> <img className='w-[30px] h-[30px] ' src={logoImg} alt="" /></Link>
+                            </li>
                             <li>
                                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
                                     {/* Home icon */}
@@ -50,13 +51,21 @@ const DashboardLayout = () => {
                                 </button>
                             </li>
 
-                              <li>
-                            <NavLink to={'/dashboard/add-service'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                                data-tip="Add Service">
-                                <BiSolidCustomize />
+                            <li>
+                                <NavLink to={'/dashboard/my-bookings'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                    data-tip="My Bookings">
+                                    <IoBookmarks />
 
-                                <span className="is-drawer-close:hidden"> Add Service</span>
-                            </NavLink>
+                                    <span className="is-drawer-close:hidden"> My Bookings</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to={'/dashboard/add-service'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                    data-tip="Add Service">
+                                    <BiSolidCustomize />
+
+                                    <span className="is-drawer-close:hidden"> Add Service</span>
+                                </NavLink>
                             </li>
                         </ul>
                     </div>

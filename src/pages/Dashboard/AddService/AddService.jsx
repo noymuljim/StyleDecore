@@ -1,14 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-// import form1 from "../../../assets/form1.png"
-// import useAuth from '../../../Hooks/useAuth';
+
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const AddService = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    // const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
 
 
@@ -106,10 +104,7 @@ const AddService = () => {
                                     errors.name?.type === 'required' && <p>Photo is required</p>
                                 }
 
-                                {/* providerName
-                                <label className="label">Service Provider:</label>
-                                <input type="text" {...register('serviceProviderName', { required: true })}
-                                    className="input w-full" defaultValue={user?.email} readOnly /> */}
+                               
 
 
                                 {/* cost */}

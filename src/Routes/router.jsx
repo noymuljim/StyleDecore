@@ -8,6 +8,10 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import AddService from "../pages/Dashboard/AddService/AddService";
 import serviceDetails from "../pages/Home/Home/Services/ServiceDetails/serviceDetails";
+import myBookings from "../pages/Dashboard/MyBookings/myBookings";
+import Payment from "../pages/Dashboard/Payment/payment";
+import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
+import PaymentCancelled from "../pages/Dashboard/Payment/PaymentCancelled";
 
 export const router = createBrowserRouter([
     {
@@ -20,14 +24,14 @@ export const router = createBrowserRouter([
                 loader: () => fetch('/servicecenters.json').then(res => res.json())
             },
             {
-                path:'service-details/:id',
-                Component:serviceDetails
-            }
-            
+                path: 'service-details/:id',
+                Component: serviceDetails,
+                loader: () => fetch('/servicecenters.json').then(res => res.json())
+
+            },
         ]
     },
 
-    
     {
         path: '/',
         Component: AuthLayout,
@@ -47,9 +51,25 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
-        path: 'add-service',
-        Component: AddService
-    },
+                path: 'add-service',
+                Component: AddService
+            },
+            {
+                path: 'my-bookings',
+                Component: myBookings
+            },
+            {
+                path: 'payment/:id',
+                Component: Payment
+            },
+            {
+                path: 'payment-success',
+                Component: PaymentSuccess
+            },
+            {
+                path: 'payment-cancelled',
+                Component: PaymentCancelled
+            },
         ]
     }
 
