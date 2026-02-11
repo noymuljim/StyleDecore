@@ -2,8 +2,6 @@ import React from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
-import { MdDeleteForever } from 'react-icons/md';
-import { Link } from 'react-router';
 
 const myBookings = () => {
     const { user } = useAuth()
@@ -18,18 +16,18 @@ const myBookings = () => {
         }
     })
 
-const haldlePayment=async (booking)=>{
-   const paymentInfo={
-            cost:booking.serviceCost,
+    const haldlePayment = async (booking) => {
+        const paymentInfo = {
+            serviceCost: booking.serviceCost,
             bookingId: booking._id,
             userEmail: booking.userEmail,
-            servicelName:booking.serviceName
+            serviceName: booking.serviceName
         }
         const res = await axiosSecure.post('/payment-checkout-session', paymentInfo);
-        console.log(res.data)
+        //  console.log(res.data)
         window.location.assign(res.data.url)
 
-}
+    }
 
     return (
         <div>
@@ -43,7 +41,7 @@ const haldlePayment=async (booking)=>{
                             <th>Service name</th>
                             <th>Cost</th>
                             <th>Payment</th>
-                            
+
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -62,15 +60,15 @@ const haldlePayment=async (booking)=>{
                                             <button className='btn btn-sm btn-secondary' onClick={() => haldlePayment(booking)}>Pay Now</button>
                                     }
                                 </td>
-                                
+
 
 
                                 <td>
-                                    <button 
+                                    {/* <button 
                                         className='btn btn-sm hover:bg-primary'><MdDeleteForever />
 
 
-                                    </button>
+                                    </button> */}
                                 </td>
                             </tr>)
                         }
