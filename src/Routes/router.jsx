@@ -9,9 +9,10 @@ import PrivateRoute from "./PrivateRoute";
 import AddService from "../pages/Dashboard/AddService/AddService";
 import serviceDetails from "../pages/Home/Home/Services/ServiceDetails/serviceDetails";
 import myBookings from "../pages/Dashboard/MyBookings/myBookings";
-import Payment from "../pages/Dashboard/Payment/payment";
+// import Payment from "../pages/Dashboard/Payment/payment";
 import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCancelled from "../pages/Dashboard/Payment/PaymentCancelled";
+import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 
 export const router = createBrowserRouter([
     {
@@ -58,10 +59,10 @@ export const router = createBrowserRouter([
                 path: 'my-bookings',
                 Component: myBookings
             },
-            {
-                path: 'payment/:id',
-                Component: Payment
-            },
+            // {
+            //     path: 'payment/:id',
+            //     Component: Payment
+            // },
             {
                 path: 'payment-success',
                 Component: PaymentSuccess
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
                 path: 'payment-cancelled',
                 Component: PaymentCancelled
             },
+            {
+                path:'payment-history',
+                Component: PaymentHistory
+            }
         ]
     }
 

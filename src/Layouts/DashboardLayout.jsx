@@ -3,6 +3,7 @@ import { BiSolidCustomize } from 'react-icons/bi';
 import { Link, NavLink, Outlet } from 'react-router';
 import logoImg from "../assets/logo1.png"
 import { IoBookmarks } from 'react-icons/io5';
+import { FaFilePowerpoint } from 'react-icons/fa';
 
 const DashboardLayout = () => {
     return (
@@ -51,6 +52,15 @@ const DashboardLayout = () => {
                                 </button>
                             </li>
 
+                            <li>
+                                <NavLink to={'/dashboard/payment-history'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                    data-tip="Payment History">
+                                    <FaFilePowerpoint />
+
+
+                                    <span className="is-drawer-close:hidden"> Payment History</span>
+                                </NavLink>
+                            </li>
                             <li>
                                 <NavLink to={'/dashboard/my-bookings'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                                     data-tip="My Bookings">
