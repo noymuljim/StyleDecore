@@ -6,8 +6,11 @@ import SocialLogin from './SocialLogin';
 import Logo from '../../components/logo';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const Register = () => {
+    const axiosSecure = useAxiosSecure()
+
     const location = useLocation()
     const navigate = useNavigate()
     const { registerUser, updateUserProfile } = useAuth();
@@ -29,11 +32,29 @@ const Register = () => {
 
                 axios.post(imgAPIurl, formData)
                     .then(res => {
-                        //   console.log('after img upld',res.data.data.url);
+                           console.log('after img upld',res.data);
+                        const photoURL = res.data.data.url
+
+                        const userInfo = {
+                            email: data.email,
+                            displayName: data.displayname,
+                            photoURL: photoURL
+                        }
+                        axiosSecure.post('/users',userInfo)
+                        .then(res=>{
+                            if(res.data.insertedId){
+                                    console.log('user created in db')
+                                }
+                        })
+
+
 
                         const userProfile = {
                             displayName: data.name,
                             photoURL: res.data.data.url
+
+
+
                         }
 
                         updateUserProfile(userProfile)
