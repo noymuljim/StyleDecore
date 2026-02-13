@@ -15,6 +15,7 @@ import PaymentCancelled from "../pages/Dashboard/Payment/PaymentCancelled";
 import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 import Decorator from "../pages/Decorator/Decorator";
 import ApproveDecorators from "../pages/Dashboard/ApproveDecorators/ApproveDecorators";
+import UsersManagement from "../pages/UsersManagement/UsersManagement";
 
 export const router = createBrowserRouter([
     {
@@ -83,8 +84,12 @@ export const router = createBrowserRouter([
                 Component: PaymentHistory
             },
             {
-                path:'approve-decorators',
-                Component:ApproveDecorators
+                path: 'approve-decorators',
+                Component: ApproveDecorators
+            },
+            {
+                path: 'users-management',
+                Component: UsersManagement
             }
         ]
     }

@@ -5,6 +5,7 @@ import logoImg from "../assets/logo1.png"
 import { IoBookmarks } from 'react-icons/io5';
 import { FaFilePowerpoint } from 'react-icons/fa';
 import { FcOk } from 'react-icons/fc';
+import { FaUserPen } from 'react-icons/fa6';
 
 const DashboardLayout = () => {
     return (
@@ -85,6 +86,15 @@ const DashboardLayout = () => {
 
 
                                     <span className="is-drawer-close:hidden">Approve Decorators</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to={'/dashboard/users-management'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                    data-tip="Users Management">
+                                    <FaUserPen />
+
+
+                                    <span className="is-drawer-close:hidden">Users Management</span>
                                 </NavLink>
                             </li>
                         </ul>
