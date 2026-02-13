@@ -4,6 +4,7 @@ import { Link, NavLink, Outlet } from 'react-router';
 import logoImg from "../assets/logo1.png"
 import { IoBookmarks } from 'react-icons/io5';
 import { FaFilePowerpoint } from 'react-icons/fa';
+import { FcOk } from 'react-icons/fc';
 
 const DashboardLayout = () => {
     return (
@@ -75,6 +76,15 @@ const DashboardLayout = () => {
                                     <BiSolidCustomize />
 
                                     <span className="is-drawer-close:hidden"> Add Service</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to={'/dashboard/approve-decorators'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                    data-tip="Approve Decorators">
+                                    <FcOk />
+
+
+                                    <span className="is-drawer-close:hidden">Approve Decorators</span>
                                 </NavLink>
                             </li>
                         </ul>

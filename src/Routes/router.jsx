@@ -13,6 +13,8 @@ import myBookings from "../pages/Dashboard/MyBookings/myBookings";
 import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCancelled from "../pages/Dashboard/Payment/PaymentCancelled";
 import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
+import Decorator from "../pages/Decorator/Decorator";
+import ApproveDecorators from "../pages/Dashboard/ApproveDecorators/ApproveDecorators";
 
 export const router = createBrowserRouter([
     {
@@ -30,9 +32,14 @@ export const router = createBrowserRouter([
                 loader: () => fetch('/servicecenters.json').then(res => res.json())
 
             },
+            {
+                path: 'decorator',
+                element: <PrivateRoute><Decorator></Decorator></PrivateRoute>,
+                loader: () => fetch('/servicecenters.json').then(res => res.json())
+
+            }
         ]
     },
-
     {
         path: '/',
         Component: AuthLayout,
@@ -72,8 +79,12 @@ export const router = createBrowserRouter([
                 Component: PaymentCancelled
             },
             {
-                path:'payment-history',
+                path: 'payment-history',
                 Component: PaymentHistory
+            },
+            {
+                path:'approve-decorators',
+                Component:ApproveDecorators
             }
         ]
     }
