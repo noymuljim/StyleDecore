@@ -16,6 +16,8 @@ import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 import Decorator from "../pages/Decorator/Decorator";
 import ApproveDecorators from "../pages/Dashboard/ApproveDecorators/ApproveDecorators";
 import UsersManagement from "../pages/UsersManagement/UsersManagement";
+import AdminRoute from "./AdminRoute";
+import AssignDecorators from "../pages/AssignDecorators/AssignDecorators";
 
 export const router = createBrowserRouter([
     {
@@ -59,10 +61,7 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
-            {
-                path: 'add-service',
-                Component: AddService
-            },
+          
             {
                 path: 'my-bookings',
                 Component: myBookings
@@ -83,14 +82,25 @@ export const router = createBrowserRouter([
                 path: 'payment-history',
                 Component: PaymentHistory
             },
+              {
+                path: 'add-service',
+               // Component: AddService
+               element:<AdminRoute><AddService></AddService></AdminRoute>
+            },
             {
                 path: 'approve-decorators',
-                Component: ApproveDecorators
+               // Component: ApproveDecorators
+               element:<AdminRoute><ApproveDecorators></ApproveDecorators></AdminRoute>
             },
             {
                 path: 'users-management',
-                Component: UsersManagement
-            }
+                //  Component: UsersManagement
+                element: <AdminRoute><UsersManagement></UsersManagement></AdminRoute>
+            },
+            {
+                path: 'assign-decorator',
+                element: <AdminRoute><AssignDecorators></AssignDecorators></AdminRoute>
+            },
         ]
     }
 

@@ -89,11 +89,12 @@ const ApproveDecorators = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
+
                             <th>Email</th>
-                            <th>District</th>
                             <th>Speciality</th>
-                            <th>Status</th>
+                            <th>Application Status</th>
+                            <th>Work Status</th>
+                            <th>Time</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -101,15 +102,16 @@ const ApproveDecorators = () => {
                         {
                             decorators.map((decorator, i) => <tr>
                                 <th>{i + 1}</th>
-                                <td>{decorator.decoratorName}</td>
                                 <td>{decorator.decoratorEmail}</td>
-                                <td>{decorator.district}</td>
                                 <td>{decorator.specialty}</td>
                                 <td>
                                     <p className={`${decorator.status === 'approved' ? "text-green-500" : decorator.status === 'rejected'
                                         ? 'text-red-500'
                                         : 'text-black'}`}>{decorator.status}</p>
                                 </td>
+                                <td>{decorator.workStatus}</td>
+                                <td>{decorator.createdAt}</td>
+
                                 <td>
                                     <button onClick={() => handleApproval(decorator)}
                                         className='btn btn-sm'><FaUserCheck />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { GrUserAdmin } from 'react-icons/gr';
@@ -6,25 +6,27 @@ import { RiAdminFill } from 'react-icons/ri';
 import Swal from 'sweetalert2';
 
 const UsersManagement = () => {
+    const [searchText, setSearchText] = useState('')
+
     const axiosSecure = useAxiosSecure();
-    const { data: users = [],refetch } = useQuery({
-        queryKey: ['users'],
+    const { data: users = [], refetch } = useQuery({
+        queryKey: ['users', searchText],
         queryFn: async () => {
-            const res = await axiosSecure.get('/users')
+            const res = await axiosSecure.get(`/users?searchText=${searchText}`)
             return res.data;
         }
     })
-     const handleMakeAdmin = (user) => {
+    const handleMakeAdmin = (user) => {
         const roleInfo = { role: 'admin' }
-        
-        axiosSecure.patch(`/users/${user._id}`, roleInfo)
+
+        axiosSecure.patch(`/users/${user._id}/role`, roleInfo)
             .then(res => {
                 console.log(res.data)
 
                 if (res.data.modifiedCount) {
-                
+
                     refetch();
-                    
+
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -36,44 +38,66 @@ const UsersManagement = () => {
             })
     }
 
-    const handleRemoveAdmin=(user)=>{
+    const handleRemoveAdmin = (user) => {
 
         Swal.fire({
-  title: "Are you sure?",
-  text: "Remove From admin?",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes"
-}).then((result) => {
-  if (result.isConfirmed) {
-  
-  
-  const roleInfo = { role: 'user' }
-        axiosSecure.patch(`/users/${user._id}`,roleInfo)
-        .then(res=>{
-            if(res.data.modifiedCount){
-                refetch();
-               
+            title: "Are you sure?",
+            text: "Remove From admin?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+
+                const roleInfo = { role: 'user' }
+                axiosSecure.patch(`/users/${user._id}/role`, roleInfo)
+                    .then(res => {
+                        if (res.data.modifiedCount) {
+                            refetch();
+
+                        }
+                    })
+
+
+                Swal.fire({
+                    title: "Removed!",
+                    text: `${user.displayName} removed from admin!`,
+
+                    icon: "success"
+                });
             }
-        })
+        });
 
-
-    Swal.fire({
-      title: "Removed!",
-      text:  `${user.displayName} removed from admin!`,
-
-      icon: "success"
-    });
-  }
-});
-      
     }
-    
+
     return (
         <div>
             <h2>Manage User:{users.length}</h2>
+
+            {/* search */}
+
+            <label className="input">
+                <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g
+                        strokeLinejoin="round"
+                        strokeLinecap="round"
+                        strokeWidth="2.5"
+                        fill="none"
+                        stroke="currentColor"
+                    >
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </g>
+                </svg>
+                <input onChange={(e) => setSearchText(e.target.value)}
+                    type="search"
+                    className="grow"
+                    placeholder="Search users" />
+
+            </label>
 
             <div className="overflow-x-auto">
                 <table className="table">
@@ -123,11 +147,11 @@ const UsersManagement = () => {
                                     {
                                         user.role === 'admin' ?
                                             //admin hyle admin theke remove korar icon
-                                            <button onClick={()=>handleRemoveAdmin(user)}
-                                             className='btn'>
+                                            <button onClick={() => handleRemoveAdmin(user)}
+                                                className='btn'>
                                                 <GrUserAdmin />
                                             </button> : <button onClick={() => handleMakeAdmin(user)}
-                                             className='btn text-green-500'>
+                                                className='btn text-green-500'>
                                                 <RiAdminFill />
 
                                             </button>

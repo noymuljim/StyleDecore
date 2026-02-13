@@ -41,6 +41,8 @@ const myBookings = () => {
                             <th>Service name</th>
                             <th>Cost</th>
                             <th>Payment</th>
+                            <th>trakingId Id</th>
+                            <th>Appoinment status</th>
 
                             <th>Actions</th>
                         </tr>
@@ -51,6 +53,7 @@ const myBookings = () => {
                                 <th>{i + 1}</th>
                                 <td>{booking.serviceName}</td>
                                 <td>{booking.serviceCost}</td>
+
                                 <td>
                                     {
                                         booking.paymentStatus === 'paid' ?
@@ -60,6 +63,8 @@ const myBookings = () => {
                                             <button className='btn btn-sm btn-secondary' onClick={() => haldlePayment(booking)}>Pay Now</button>
                                     }
                                 </td>
+                                <td>{booking.trakingId}</td>
+                                <td>{booking.appoinmentStatus}</td>
 
 
 

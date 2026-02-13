@@ -6,8 +6,11 @@ import { IoBookmarks } from 'react-icons/io5';
 import { FaFilePowerpoint } from 'react-icons/fa';
 import { FcOk } from 'react-icons/fc';
 import { FaUserPen } from 'react-icons/fa6';
+import useRole from '../Hooks/useRole';
+import { RiUserStarFill } from 'react-icons/ri';
 
 const DashboardLayout = () => {
+    const {role}=useRole()
     return (
         <div>
             <div className="drawer lg:drawer-open bg-gray-100">
@@ -71,7 +74,11 @@ const DashboardLayout = () => {
                                     <span className="is-drawer-close:hidden"> My Bookings</span>
                                 </NavLink>
                             </li>
-                            <li>
+                        
+                        
+                           {
+                            role==="admin" && <>
+                             <li>
                                 <NavLink to={'/dashboard/add-service'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                                     data-tip="Add Service">
                                     <BiSolidCustomize />
@@ -97,6 +104,17 @@ const DashboardLayout = () => {
                                     <span className="is-drawer-close:hidden">Users Management</span>
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink to={'/dashboard/assign-decorator'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                    data-tip="Assign Decorator">
+                                   <RiUserStarFill />
+
+
+                                    <span className="is-drawer-close:hidden">Assign decorator</span>
+                                </NavLink>
+                            </li>
+                            </>
+                           }
                         </ul>
                     </div>
                 </div>
