@@ -7,10 +7,11 @@ import { FaFilePowerpoint } from 'react-icons/fa';
 import { FcOk } from 'react-icons/fc';
 import { FaUserPen } from 'react-icons/fa6';
 import useRole from '../Hooks/useRole';
-import { RiUserStarFill } from 'react-icons/ri';
+import { RiTaskLine, RiUserStarFill } from 'react-icons/ri';
+import { SiGoogletasks } from 'react-icons/si';
 
 const DashboardLayout = () => {
-    const {role}=useRole()
+    const { role } = useRole()
     return (
         <div>
             <div className="drawer lg:drawer-open bg-gray-100">
@@ -74,47 +75,67 @@ const DashboardLayout = () => {
                                     <span className="is-drawer-close:hidden"> My Bookings</span>
                                 </NavLink>
                             </li>
-                        
-                        
-                           {
-                            role==="admin" && <>
-                             <li>
-                                <NavLink to={'/dashboard/add-service'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                                    data-tip="Add Service">
-                                    <BiSolidCustomize />
-
-                                    <span className="is-drawer-close:hidden"> Add Service</span>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to={'/dashboard/approve-decorators'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                                    data-tip="Approve Decorators">
-                                    <FcOk />
 
 
-                                    <span className="is-drawer-close:hidden">Approve Decorators</span>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to={'/dashboard/users-management'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                                    data-tip="Users Management">
-                                    <FaUserPen />
+                            {
+                                role === "admin" && <>
+                                    <li>
+                                        <NavLink to={'/dashboard/add-service'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                            data-tip="Add Service">
+                                            <BiSolidCustomize />
+
+                                            <span className="is-drawer-close:hidden"> Add Service</span>
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to={'/dashboard/approve-decorators'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                            data-tip="Approve Decorators">
+                                            <FcOk />
 
 
-                                    <span className="is-drawer-close:hidden">Users Management</span>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to={'/dashboard/assign-decorator'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                                    data-tip="Assign Decorator">
-                                   <RiUserStarFill />
+                                            <span className="is-drawer-close:hidden">Approve Decorators</span>
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to={'/dashboard/users-management'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                            data-tip="Users Management">
+                                            <FaUserPen />
 
 
-                                    <span className="is-drawer-close:hidden">Assign decorator</span>
-                                </NavLink>
-                            </li>
-                            </>
-                           }
+                                            <span className="is-drawer-close:hidden">Users Management</span>
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to={'/dashboard/assign-decorator'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                            data-tip="Assign Decorator">
+                                            <RiUserStarFill />
+
+
+                                            <span className="is-drawer-close:hidden">Assign decorator</span>
+                                        </NavLink>
+                                    </li>
+                                </>
+                            }
+                            {
+                                role === "decorator" && <>
+                                    <li>
+                                        <NavLink to={'/dashboard/assigned-orders'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                            data-tip="Assigned Orders">
+                                            <SiGoogletasks />
+
+                                            <span className="is-drawer-close:hidden">Assigned Orders</span>
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to={'/dashboard/completed-decorations'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                            data-tip="Completed Decorations">
+                                            <RiTaskLine />
+
+                                            <span className="is-drawer-close:hidden">Completed Decorations</span>
+                                        </NavLink>
+                                    </li>
+                                </>
+                            }
                         </ul>
                     </div>
                 </div>

@@ -17,7 +17,10 @@ import Decorator from "../pages/Decorator/Decorator";
 import ApproveDecorators from "../pages/Dashboard/ApproveDecorators/ApproveDecorators";
 import UsersManagement from "../pages/UsersManagement/UsersManagement";
 import AdminRoute from "./AdminRoute";
-import AssignDecorators from "../pages/AssignDecorators/AssignDecorators";
+import AssignDecorators from "../pages/Dashboard/AssignDecorators/AssignDecorators";
+import DecoratorRoute from "./DecoratorRoute";
+import AssignedOrders from "../pages/Dashboard/AssignedOrders/AssignedOrders";
+import CompletedOrders from "../pages/Dashboard/CompletedOrders/CompletedOrders";
 
 export const router = createBrowserRouter([
     {
@@ -101,7 +104,15 @@ export const router = createBrowserRouter([
                 path: 'assign-decorator',
                 element: <AdminRoute><AssignDecorators></AssignDecorators></AdminRoute>
             },
+            //decorators route only
+            {
+                path:'assigned-orders',
+                element:<DecoratorRoute><AssignedOrders></AssignedOrders></DecoratorRoute>
+            },
+            {
+                path:'completed-decorations',
+                element:<DecoratorRoute><CompletedOrders></CompletedOrders></DecoratorRoute>
+            }
         ]
     }
-
 ]);
